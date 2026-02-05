@@ -30,7 +30,7 @@ class User extends Authenticatable
         'name',
         'user_id',
         'email',
-        'google_id',
+        'provider_id',
         'provider',
         'avatar',
         'join_date',

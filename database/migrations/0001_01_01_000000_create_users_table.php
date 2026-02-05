@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('email')->unique();
 
             // Social Login
-            $table->string('google_id')->nullable()->unique();
-            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable()->unique(); // OAuth user ID
+            $table->string('provider')->nullable(); // github, google, facebook 
 
             // User Metadata
             $table->string('join_date')->nullable();

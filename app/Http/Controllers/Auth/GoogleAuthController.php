@@ -25,7 +25,7 @@ class GoogleAuthController extends Controller
                     ->withErrors('No email returned from Google account.');
             }
 
-            $user = User::where('google_id', $googleUser->id)
+            $user = User::where('provider_id', $googleUser->id)
                 ->orWhere('email', $googleUser->email)
                 ->first();
 
@@ -33,7 +33,7 @@ class GoogleAuthController extends Controller
                 $user = User::create([
                     'name'      => $googleUser->name,
                     'email'     => $googleUser->email,
-                    'google_id' => $googleUser->id,
+                    'provider_id' => $googleUser->id,
                     'provider'  => 'google',
                     'avatar'    => $googleUser->avatar,
                     'password'  => bcrypt(Str::random(24)),
@@ -44,7 +44,7 @@ class GoogleAuthController extends Controller
             } else {
                 if (!$user->google_id) {
                     $user->update([
-                        'google_id' => $googleUser->id,
+                        'provider_id' => $googleUser->id,
                         'provider'  => 'google',
                     ]);
                 }
