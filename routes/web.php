@@ -20,6 +20,7 @@ Route::group(['middleware'=>'auth'],function()
 
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\GithubAuthController;
+use App\Http\Controllers\Auth\FacebookAuthController;
 
 // Google OAuth Routes
 Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google.login');
@@ -29,6 +30,8 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
 Route::get('/auth/github', [GithubAuthController::class, 'redirect'])->name('github.login');
 Route::get('/auth/github/callback', [GithubAuthController::class, 'callback']);
 
+Route::get('/auth/facebook', [FacebookAuthController::class, 'redirect'])->name('facebook.login');
+Route::get('/auth/facebook/callback', [FacebookAuthController::class, 'callback']);
 
 Auth::routes();
 
